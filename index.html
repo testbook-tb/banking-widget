@@ -5,16 +5,16 @@
 <title>Testbook Trial Widget</title>
 
 <style>
-/* Global Reset to Stop Input Overflow */
+/* Global Reset */
 *, *:before, *:after {
   box-sizing: border-box !important;
 }
 
-/* Testbook Theme Styling */
+/* Remove full-page blue background */
 body {
   margin: 0;
   padding: 0;
-  background: #0A1931;
+  background: #ffffff; /* White outer background */
   font-family: Arial, sans-serif;
 }
 
@@ -24,10 +24,10 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 22px 22px 28px;
-  background: #0A1931;
+  background: #0A1931; /* Inner box background remains */
   color: #fff;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 2px solid rgba(255,255,255,0.4); /* Visible border on all 4 sides */
 }
 
 /* Heading */
@@ -59,10 +59,9 @@ body {
   transition: width 0.4s ease;
 }
 
-/* Input Fields */
+/* Inputs */
 input {
   width: 100%;
-  max-width: 100%;
   padding: 12px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.15);
@@ -76,7 +75,7 @@ input::placeholder {
   color: #afc4e2;
 }
 
-/* CTA Button */
+/* CTA */
 button {
   width: 100%;
   padding: 14px;
@@ -97,13 +96,12 @@ button:hover {
   transform: translateY(-2px);
 }
 </style>
-
 </head>
 <body>
 
 <div class="tb-widget-container">
 
-<h2>Access Your 1-Day Trial For Banking Exam Coaching</h2>
+<h2>Access Your 2-Days Testbook Banking SuperCoaching Trial @ ₹1</h2>
 
 <p>
   Only <span id="tb-slots-left">50</span> slots available this week.
@@ -113,7 +111,6 @@ button:hover {
   <li>✔ Access 375+ Exams Testbook SuperCoaching</li>
   <li>✔ Live Q&A Session Included</li>
   <li>✔ Guided Exam Learning Hour</li>
-  <li>✔ Limited Seats • Fast Filling</li>
 </ul>
 
 <!-- Slots -->
@@ -132,7 +129,7 @@ button:hover {
 <form id="tbForm" style="margin-top:18px;">
   <input id="tbName" type="text" placeholder="Name" required>
   <input id="tbPhone" type="tel" placeholder="Phone" required>
-  <button type="submit" id="tb-submit-btn">Claim Your 1-Day Trial</button>
+  <button type="submit" id="tb-submit-btn">Start Trial @₹1</button>
 </form>
 
 </div>
@@ -153,7 +150,6 @@ document.getElementById("tbForm").addEventListener("submit", async function(e){
   btn.textContent = "Submitting...";
   btn.disabled = true;
 
-  // Use FormData instead of JSON (Google Sheets compatible)
   const formData = new FormData();
   formData.append("name", document.getElementById("tbName").value);
   formData.append("phone", document.getElementById("tbPhone").value);
@@ -169,4 +165,3 @@ document.getElementById("tbForm").addEventListener("submit", async function(e){
 
 </body>
 </html>
-
