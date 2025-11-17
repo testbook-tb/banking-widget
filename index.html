@@ -6,9 +6,7 @@
 
 <style>
 /* Global Reset to Stop Input Overflow */
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   box-sizing: border-box !important;
 }
 
@@ -144,7 +142,7 @@ button:hover {
 const TOTAL = 50;
 let left = TOTAL - Math.floor(Math.random() * 12);
 document.getElementById('tb-slots-left').textContent = left;
-document.getElementById('tb-slots-label').textContent = ${left}/${TOTAL} Left;
+document.getElementById('tb-slots-label').textContent = `${left}/${TOTAL} Left`;
 document.getElementById('tb-slots-fill').style.width = ((TOTAL-left)/TOTAL) * 100 + "%";
 
 // Submit + Redirect
@@ -155,22 +153,19 @@ document.getElementById("tbForm").addEventListener("submit", async function(e){
   btn.textContent = "Submitting...";
   btn.disabled = true;
 
-  const data = {
-    name: document.getElementById("tbName").value,
-    phone: document.getElementById("tbPhone").value
-  };
+  // Use FormData instead of JSON (Google Sheets compatible)
+  const formData = new FormData();
+  formData.append("name", document.getElementById("tbName").value);
+  formData.append("phone", document.getElementById("tbPhone").value);
 
   await fetch("https://script.google.com/macros/s/AKfycbylf_-McsnayvcW4-T3-v87o2SvuI7mhJ4m5krFoSH4yj-qukJ3727gNgU-q-dVYKZE3Q/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: formData
   });
 
-  window.top.location.href =
-    "https://testbk.co/1f9wk";
+  window.top.location.href = "https://testbk.co/1f9wk";
 });
 </script>
 
 </body>
-
 </html>
